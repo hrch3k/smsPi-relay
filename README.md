@@ -241,6 +241,10 @@ And it will return you all messages also in a JSON object
 ```
 
 
+When everything works just run the python script:
+
+    <pre>python checkFolder.py</pre>
+
 ## References:
 https://blog.haschek.at/2021/raspberry-pi-sms-gateway.html#step1
 
