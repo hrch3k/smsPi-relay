@@ -10,19 +10,19 @@ Prerequisites
 
 
 1. To handle sending and recieving of messages we have to install gammu and gammu-smsd:
-sudo apt install gammu gammu-smsd
+>sudo apt install gammu gammu-smsd
 
 
 
 2. We need php to serve API that will provide json of recieved messages and http endpoint to send message.
-sudo apt install php php-json
+>sudo apt install php php-json
 
 
 3. Plug in USB modem with simcard inserted and restart Raspberry pi.
 
 
 4. Some dongles are recognized as storage devices, in this case you have to use mode-switch to put it in modem mode. 
-ls -al /dev/ttyUSB0
+>ls -al /dev/ttyUSB0
 ![image](https://github.com/hrch3k/smsPi-relay/assets/24423488/4ea73a80-cdb1-44e2-bac9-b34877f95b41)
 if you got output similar to this, it means your dongle is in modem mode. If not check here: (https://wiki-ubuntuusers-de.translate.goog/USB_ModeSwitch/?_x_tr_sl=de&_x_tr_tl=en&_x_tr_hl=de)
 
@@ -37,10 +37,10 @@ if you got output similar to this, it means your dongle is in modem mode. If not
 
 
 8. Edit gammu config file.
-   sudo nano /etc/gammurc
+   >sudo nano /etc/gammurc
 
 9. Insert
-    
+'''    
    [gammu]
    device = /dev/ttyUSB0
    name = Telekom
