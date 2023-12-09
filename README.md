@@ -64,13 +64,15 @@ if you got output similar to this, it means your dongle is in modem mode. If not
 
 
 
-9. At this point you should be able to send SMS from command line with: 
-echo "some message" | gammu --sendsms TEXT 00386xxxxxxx (Change country code and phone number)
+9. At this point you should be able to send SMS from command line with:
+<pre> 
+echo "some message" | gammu --sendsms TEXT 00386xxxxxxx </pre> (Change country code and phone number)
 
 
 IF everything worked so far, you can now run gammu-smsd and set up API.
 
 10. Create gammu-smsd config file:
+    '''bash
     sudo nano /etc/gammu-smsdrc
 
     Add config:
@@ -99,6 +101,7 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
 
 
 12. Create folders:
+    '''bash
     mkdir -p /var/spool/gammu/inbox/
     mkdir -p /var/spool/gammu/outbox/
     mkdir -p /var/spool/gammu/sent/
@@ -107,14 +110,17 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
 
 
 
-13. Start gammu in deamon mode:
+14. Start gammu in deamon mode:
+    '''bash
     gammu-smsd -d -c /etc/gammurc
 
-14. To check if gammu-smsd is running type:
+16. To check if gammu-smsd is running type:
+    '''bash
     sudo systemctl status gammu-smsd
 
 
 If gammu-smsd is not running due to permission error, you have to set permissions of /dev/ttyUSB0:
+   '''bash
    sudo chmod 777 /dev/ttyUSB0
 
 
@@ -125,6 +131,7 @@ We still can send them though using the command gammu-smsd-inject which is desig
 into a local queue where it's then sent by the daemon.
 
 The full example to send SMS messages from command line now would be
+    '''bash
     gammu-smsd-inject TEXT 00386xxxxxxx -unicode -text "hello world from the daemon!"
 
 
@@ -135,9 +142,10 @@ Okay now it's time to send some message back and see if it registers on the devi
 
 Wait a few seconds and then check the folder for contents
 
-pi:~# ls /var/spool/gammu/inbox/
+'''bash ls /var/spool/gammu/inbox/
 IN20211203_194458_00_+386xxxxxxx_00.txt
 
+'''bash
 pi:~# cat /var/spool/gammu/inbox/IN20211203_194458_00_++386xxxxxxx_00.txt
 Hello also from the outside world!
 
@@ -157,10 +165,12 @@ Make sure gammu-smsd is already running as the script won't work without it.
 Then from the directory where the two php files (send.php and get.php) are stored, run php -S 0.0.0.0:8080 which will serve the two files to anyone on the network.
 
 Sending SMS with the API
-Is really straight forward. Just call http://ip.of.your.pi/send.php?phone=0664xxxxxxx&text=Testmessage
+Is really straight forward. Just call <pre>http://ip.of.your.pi/send.php?phone=0664xxxxxxx&text=Testmessage</pre> from your browser or curl or python script.
 
 Which will return a JSON object indicating if it failed (status:error), or succeeded (status:ok)
 
+```markdown
+```json
 {
   "status": "ok",
   "log": "2021-12-04 15:43:39\ngammu-smsd-inject TEXT 0664xxxxxxx -unicode -text 'Testmessage'\ngammu-smsd-inject[2669]: Warning: No PIN code in /etc/gammu-smsdrc file\ngammu-smsd-inject[2669]: Created outbox message OUTC20211204_164340_00_0664xxxxxxx_sms0.smsbackup\nWritten message with ID /var/spool/gammu/outbox/OUTC20211204_164340_00_0664xxxxxxx_sms0.smsbackup\n\n\n"
@@ -174,8 +184,11 @@ Receiving SMS with the API
 Is also very simple. Just call http://ip.of.your.pi/get.php
 
 And it will return you all messages also in a JSON object
-
+'''bash
 curl -s http://ip.of.your.pi/get.php | jq .
+
+```markdown
+```json
 [
   {
     "id": "f0a7789a657bb34eddd17c8e64609c48",
