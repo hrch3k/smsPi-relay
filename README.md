@@ -40,7 +40,8 @@ if you got output similar to this, it means your dongle is in modem mode. If not
    >sudo nano /etc/gammurc
 
 9. Insert
-'''    
+
+   <pre>
    [gammu]
    device = /dev/ttyUSB0
    name = Telekom
@@ -58,6 +59,7 @@ if you got output similar to this, it means your dongle is in modem mode. If not
    outboxpath = /var/spool/gammu/outbox/
    sentsmspath = /var/spool/gammu/sent/
    errorsmspath = /var/spool/gammu/error/
+   </pre>
 
 
 
