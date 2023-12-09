@@ -241,7 +241,7 @@ And it will return you all messages also in a JSON object
 ```
 
 
-When everything works just run the python script:
+When everything works just run the python script from the project folder:
 
     python checkFolder.py
 
