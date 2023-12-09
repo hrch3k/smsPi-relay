@@ -101,11 +101,12 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
 
 
 12. Create folders:
-    '''bash
+    <pre>
     mkdir -p /var/spool/gammu/inbox/
     mkdir -p /var/spool/gammu/outbox/
     mkdir -p /var/spool/gammu/sent/
     mkdir -p /var/spool/gammu/error/
+    </pre>
 
 
 
@@ -169,8 +170,8 @@ Is really straight forward. Just call <pre>http://ip.of.your.pi/send.php?phone=0
 
 Which will return a JSON object indicating if it failed (status:error), or succeeded (status:ok)
 
-```markdown
-```json
+'''json
+
 {
   "status": "ok",
   "log": "2021-12-04 15:43:39\ngammu-smsd-inject TEXT 0664xxxxxxx -unicode -text 'Testmessage'\ngammu-smsd-inject[2669]: Warning: No PIN code in /etc/gammu-smsdrc file\ngammu-smsd-inject[2669]: Created outbox message OUTC20211204_164340_00_0664xxxxxxx_sms0.smsbackup\nWritten message with ID /var/spool/gammu/outbox/OUTC20211204_164340_00_0664xxxxxxx_sms0.smsbackup\n\n\n"
@@ -187,8 +188,8 @@ And it will return you all messages also in a JSON object
 '''bash
 curl -s http://ip.of.your.pi/get.php | jq .
 
-```markdown
-```json
+'''json
+
 [
   {
     "id": "f0a7789a657bb34eddd17c8e64609c48",
