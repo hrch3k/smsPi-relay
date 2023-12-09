@@ -37,9 +37,10 @@ if you got output similar to this, it means your dongle is in modem mode. If not
 
 
 8. Edit gammu config file.
-   >sudo nano /etc/gammurc
+   ```bash
+   sudo nano /etc/gammurc
 
-9. Insert
+10. Insert
 
    <pre>
    [gammu]
