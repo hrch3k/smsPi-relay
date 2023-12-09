@@ -74,6 +74,8 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
     sudo nano /etc/gammu-smsdrc
 
     Add config:
+    
+    <pre>
     [gammu]
     # Please configure this!
     port = /dev/ttyUSB0
@@ -93,9 +95,10 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
     outboxpath = /var/spool/gammu/outbox/
     sentsmspath = /var/spool/gammu/sent/
     errorsmspath = /var/spool/gammu/error/
+    </pre>
 
 
-11. Create folders:
+12. Create folders:
     mkdir -p /var/spool/gammu/inbox/
     mkdir -p /var/spool/gammu/outbox/
     mkdir -p /var/spool/gammu/sent/
@@ -104,10 +107,10 @@ IF everything worked so far, you can now run gammu-smsd and set up API.
 
 
 
-12. Start gammu in deamon mode:
+13. Start gammu in deamon mode:
     gammu-smsd -d -c /etc/gammurc
 
-13. To check if gammu-smsd is running type:
+14. To check if gammu-smsd is running type:
     sudo systemctl status gammu-smsd
 
 
